@@ -63,7 +63,8 @@ int find_fit(void *heapstart, size_t *size, size_t used_block,
 	}
 
 	*free_block_addr = chunk;
-	*free_block_size = used_block ? *((size_t *)*free_block_addr) : (size_t)page_size;
+	*free_block_size = used_block ?
+		*((size_t *)*free_block_addr) : (size_t)page_size;
 
 	*size += (ALIGN - (*size % ALIGN));
 
@@ -79,8 +80,8 @@ int find_fit(void *heapstart, size_t *size, size_t used_block,
 }
 
 /**
- * naive_malloc - simple implementation of malloc where blocks of memory are allocated
- * 	but not freed blocks are NOT reused.
+ * naive_malloc - simple implementation of malloc where blocks of memory
+ * are allocated but not freed blocks are NOT reused.
  * @size: memory size requested by user
  * Return: address of newly allocated block on success, or NULL on failure
  */
@@ -103,7 +104,8 @@ void *naive_malloc(size_t size)
 		perror("sbrk(): from naive_malloc()");
 		return (NULL);
 	}
-	if (find_fit(heapstart, &size, alloc_chunks, &free_block_addr, &free_block_size)
+	if (find_fit(heapstart, &size, alloc_chunks, &free_block_addr,
+			&free_block_size)
 	    == 1)
 		return (NULL);
 
