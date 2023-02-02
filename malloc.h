@@ -15,7 +15,7 @@
 #define MIN_SIZE sizeof(void *)
 #define PAGESIZE sysconf(_SC_PAGESIZE)
 #define HDR_SZ sizeof(block_info)
-#define align_up(num, align) (((num) + ((align)-1)) & ~((align)-1))
+#define align_up(num, align) (((num) + ((align) - 1)) & ~((align) - 1))
 #define LSB_ZERO_MASK 0xfffffffffffffffe
 #define _GET_SIZE(p) (((block_info *)(p))->size)
 #define _GET_PREV(p) (((block_info *)(p))->prev)
@@ -29,8 +29,8 @@
  */
 typedef struct heap_info_s
 {
-    void *heap_start;
-    void *heap_end;
+	void *heap_start;
+	void *heap_end;
 } heap_info;
 
 /**
@@ -40,8 +40,8 @@ typedef struct heap_info_s
  */
 typedef struct block_info_s
 {
-    size_t prev;
-    size_t size;
+	size_t prev;
+	size_t size;
 } block_info;
 
 /**
@@ -54,10 +54,10 @@ typedef struct block_info_s
  */
 typedef struct chunk_s
 {
-    size_t prev_size;
-    size_t size;
-    struct chunk_s *next_free;
-    struct chunk_s *prev_free;
+	size_t prev_size;
+	size_t size;
+	struct chunk_s *next_free;
+	struct chunk_s *prev_free;
 } chunk_t;
 
 void *naive_malloc(size_t size);
